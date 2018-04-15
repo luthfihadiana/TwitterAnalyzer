@@ -1,0 +1,66 @@
+body{
+    margin : 0;
+    font-family: 'Comfortaa', cursive;
+}
+/* navbar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    border-top: 3px solid #008CBA;
+    box-shadow: 0px 2px 5px grey;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    color: #008CBA;
+}
+p{
+    margin: 0;
+}
+.title{
+    text-align: center;
+}
+.container{
+    background: white;
+    margin: 10px 10%;
+    padding: 2%;
+}
+#Logo{
+    font-family: 'Lobster', cursive;
+    margin-bottom: 0px;
+}
+#Twitter{
+    color : #008CBA;
+}
+#Analyzer{
+    color:rgb(226, 41, 41);
+}
+#Caption{
+    margin-top: 0px;
+}
+hr.style13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+hr.style14 { 
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
