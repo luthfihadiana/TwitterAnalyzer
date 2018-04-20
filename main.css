@@ -3,18 +3,37 @@ body{
     font-family: 'Comfortaa', cursive;
 }
 /* navbar */
-ul {
+.nav {
     list-style-type: none;
-    margin: 0;
+    margin :0;
     padding: 0;
     overflow: hidden;
     background-color: white;
     border-top: 3px solid #008CBA;
     box-shadow: 0px 2px 5px grey;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+.nav + .row{
+    margin-top: 70px;
+}
+form{
+    margin-bottom: 20px;
+}
+.bigLogo{
+    margin:0%;
+}
+ul .littleLogo{
+    width: 100px;
+    height: 50px;
+    float: left;
 }
 
 li {
     float: left;
+    background: white;
 }
 
 li a {
@@ -30,6 +49,9 @@ li a:hover {
 p{
     margin: 0;
 }
+.name{
+    margin: 10px;
+}
 .title{
     text-align: center;
 }
@@ -38,29 +60,39 @@ p{
     margin: 10px 10%;
     padding: 2%;
 }
-#Logo{
-    font-family: 'Lobster', cursive;
-    margin-bottom: 0px;
+.postContainer{
+    /* border-bottom: 1px ridge grey; */
+    padding : 2%;
 }
-#Twitter{
-    color : #008CBA;
+.postContainer:nth-child(2n-1){
+    background-color:rgb(239, 251, 255);
 }
-#Analyzer{
-    color:rgb(226, 41, 41);
+h2{
+    margin:0;
 }
+.inputField{
+    position: fixed;
+}
+#screenName{
+    color: black;
+    text-decoration: none;
+}
+#screenName:hover{
+    color: #008CBA;
+}
+#username{
+    color: grey;
+}
+
 #Caption{
     margin-top: 0px;
 }
+#btnRight{
+    float: right;
+}
+
 hr.style13 {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;
-}
-hr.style14 { 
-    border: 0; 
-    height: 1px; 
-    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
-    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
 }
