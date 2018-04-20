@@ -67,6 +67,15 @@ p{
 .postContainer:nth-child(2n-1){
     background-color:rgb(239, 251, 255);
 }
+.postContainer.spam{
+    background-color: lightpink;
+}
+input[type="radio"]:checked+span:after, input[type="radio"].with-gap:checked+span:before, input[type="radio"].with-gap:checked+span:after {
+    border: 2px solid #039be5;
+}
+input [type="radio"]:checked+span:after, input[type="radio"].with-gap:checked+span:after {
+    background-color: #039be5;
+}
 h2{
     margin:0;
 }
