@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# Author: Overxfl0w13 #
-# Sequential search, boyer moore algorithm #
-
 def generate_d_vector(text,pattern):
 	d = {}
 	for char in text: 
