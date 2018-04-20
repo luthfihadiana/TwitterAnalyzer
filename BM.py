@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author: Overxfl0w13 #
+# Sequential search, boyer moore algorithm #
+import sys
 def generate_d_vector(text,pattern):
 	d = {}
 	for char in text: 
@@ -19,5 +24,5 @@ def boyer_moore(text,pattern,d):
 	return -1
 	
 if __name__ == "__main__":
-	text,pattern = "Ajax Amsterdam berpesta empat gol saat kedatangan VVV Venlo pada lanjutan Eredivisie Belanda. Pada pertandingan i… https://t.co/e7pTIhT4IP", input("Masukkan string uji: ")
+	text,pattern = sys.argv[2].lower(), sys.argv[1].lower()
 	print(boyer_moore(text,pattern,generate_d_vector(text,pattern)))

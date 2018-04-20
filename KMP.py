@@ -1,3 +1,4 @@
+import sys
 def KMP(text, pattern):
     n, m = len(text), len(pattern)
     j = 0
@@ -13,7 +14,7 @@ def KMP(text, pattern):
             k = fail[k-1]
         else:
             j += 1
-    return 'Tidak ada kecocokkan'
+    return -1
         
         
 def kmp_fail(P):
@@ -32,5 +33,4 @@ def kmp_fail(P):
             j += 1
     return fail
 	
-P = input('Masukkan pattern: ')
-print(KMP("fuck jancok shit", P))
+print(KMP(sys.argv[2].lower(), sys.argv[1].lower()))
