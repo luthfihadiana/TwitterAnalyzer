@@ -8,11 +8,40 @@ $access_token = "407673525-R7cNepBNpQYFB1fNRW41H3bCSKf4ICXF6wqKKRnL";
 $access_token_secret = "mzQYK3JhTQ2mbvLGgJh72PbjTcBkhDbSV3prmCnkDpGyf";
 $connection = new TwitterOAuth($consumerKey, $consumerSecret, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
+$numTweet = 25;
 if(isset($_POST["userName"])){
-    $statuses = $connection->get("statuses/user_timeline", ["screen_name"=>$_POST["userName"],"count" => 25, "exclude_replies" => true]);
+    $statuses = $connection->get("statuses/user_timeline", ["screen_name"=>$_POST["userName"],"count" => $numTweet, "exclude_replies" => true]);
     $username = $statuses[0]->user->name;
 }
-$index = 0;
+$spamCount = 0;
+$arSpam = array();
+if(isset($_POST["userName"])){
+    foreach ($statuses as $iter){
+        $flagSpam = exec("python RE_spammerDetector.py \"$iter->text\"");
+        array_push($arSpam,$flagSpam);
+        if($flagSpam != "-1"){
+            $spamCount ++;
+        }
+    }
+    $numTweet = count($arSpam);
+    if($numTweet % 2 == 0){
+        if($spamCount >= ($numTweet/2)){
+            $category = "Spammer";
+            $colorCount = "Red";
+        }else{
+            $category = "Clean";
+            $colorCount = "#008CBA";
+        }
+    }else{
+        if($spamCount >= (($numTweet+1)/2)){
+            $category = "Spammer";
+            $colorCount = "Red";
+        }else{
+            $category = "Clean";
+            $colorCount = "#008CBA";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,23 +101,41 @@ $index = 0;
                 if(isset($_POST["userName"]))
                 echo $username
                 ?></h2>
-                <h3 style="margin-top :  5px; text-align :  center; color : #008CBA">is<br><span style="color : red;">Spammer</span></h3> 
-                <p style="color : #008CBA;">Detect : <span style= "color : red;" >10</span> from 25</p>
+                <h3 style="margin-top :  5px; text-align :  center; color : #008CBA"><?php if(isset($_POST["userName"])){echo "is";}?><br><span style="color : <?php if(isset($_POST["userName"])){echo $colorCount;}?>;"><?php if(isset($_POST["userName"])){echo $category;}?></span></h3> 
+                <p style="color : #008CBA;"><?php if(isset($_POST["userName"])){echo "Detect";}?> : <span style= "color : <?php if(isset($_POST["userName"])){echo $colorCount;}?>;"><?php if(isset($_POST["userName"])){echo $spamCount;}?></span><?php if(isset($_POST["userName"])){echo " from ",$numTweet;}?></p>
                 <?php 
                 if(isset($_POST["userName"])){
-                    foreach ($statuses as $iter)
-                        echo '<div class="postContainer">
-                                <img src=',$iter->user->profile_image_url,' alt="" class="circle">
-                                <div>
-                                    <div class="name">
-                                        <a id="screenName" href="#">',$iter->user->name,' </a>
-                                        <span id="username">@',$iter->user->screen_name,'</span>
+                    $i = 0;
+                    foreach ($statuses as $iter){
+                        if($arSpam[$i] == "-1"){
+                            echo '<div class="postContainer">
+                                    <img src=',$iter->user->profile_image_url,' alt="" class="circle">
+                                    <div>
+                                        <div class="name">
+                                            <a id="screenName" href="#">',$iter->user->name,' </a>
+                                            <span id="username">@',$iter->user->screen_name,'</span>
+                                        </div>
+                                        <div class="tweetText">
+                                            <p>',$iter->text,'</p>
+                                        </div>
                                     </div>
-                                    <div class="tweetText">
-                                        <p>',$iter->text,'</p>
+                                </div>';
+                        }else{
+                            echo '<div class="postContainer spam">
+                                    <img src=',$iter->user->profile_image_url,' alt="" class="circle">
+                                    <div>
+                                        <div class="name">
+                                            <a id="screenName" href="#">',$iter->user->name,' </a>
+                                            <span id="username">@',$iter->user->screen_name,'</span>
+                                        </div>
+                                        <div class="tweetText">
+                                            <p>',$iter->text,'</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>';
+                                </div>';
+                        }
+                        $i++;
+                    }
                 }
                 ?>
             </div>
