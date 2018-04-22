@@ -75,7 +75,7 @@ $index = 0;
                     }
                     ?> </span>
                                         
-                    <span style="color : lightpink; float:right;">Selected Algoritma : <?php 
+                    <span style="color : lightpink; float:right;">Selected Algorithm : <?php 
                     if (isset($_POST["selectedAlgo"])){
                         echo $_POST["selectedAlgo"];
                     }else{
