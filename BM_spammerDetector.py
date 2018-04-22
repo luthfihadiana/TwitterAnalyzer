@@ -22,20 +22,11 @@ def boyer_moore(text,pattern,d):
 def keyword_spam(text):
 # mengembalikan 1 jika ditemukan keyword spam pada postingan
 # mengembalikan -1 jika tidak
-	pattern = 'https'
-	b1 = boyer_moore(text,pattern,generate_d_vector(text,pattern))
-	pattern = 'waduh'
-	b2 = boyer_moore(text,pattern,generate_d_vector(text,pattern))
-	pattern = 'hey'
-	b3 = boyer_moore(text,pattern,generate_d_vector(text,pattern))
-	pattern = 'wibu'
-	b4 = boyer_moore(text,pattern,generate_d_vector(text,pattern))
-	pattern = 'AKB48'
-	b5 = boyer_moore(text,pattern,generate_d_vector(text,pattern))	
-	if (b1 or b2 or b3 or b4 or b5) :
-		return 1
-	else:
-		return -1
+	patterns = ['https', 'waduh', 'hey', 'wibu', 'AKB48']
+	for pattern in patterns :
+		if (boyer_moore(text,pattern,generate_d_vector(text,pattern))) :
+			return 1
+	return -1
 
 if __name__ == "__main__":
 	text = sys.argv[1].lower()
