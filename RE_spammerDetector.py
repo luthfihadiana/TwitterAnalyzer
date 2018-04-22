@@ -20,4 +20,4 @@ def keyword_spam(text):
 		return -1
 
 # main program
-print(keyword_spam(text))
+print(keyword_spam(sys.argv[1]))
