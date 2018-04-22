@@ -6,34 +6,66 @@
     <title>Tugas Besar Stima 3</title>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Lobster" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <!-- <script src="main.js"></script> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="materialize.min.css" />    
 </head>
     <body>
         <ul>
-            <li><a href="default.asp">Home</a></li>
-            <li><a href="news.asp">News</a></li>
-            <li><a href="contact.asp">Contact</a></li>
+            <a href="news.asp"><img href="#" src="logo.png" class="littleLogo"></a>
+            <li><a href="news.asp">Apps</a></li>            
+            <li><a href="contact.asp">Tutorial</a></li>
             <li><a href="about.asp">About</a></li>
         </ul>
         <div class="container">
             <div class="title">
-                <h1 id="Logo"><span id="Twitter">Twitter</span><span id="Analyzer">Analyzer</span></h1>
+                <!-- <h1 id="Logo"><span id="Twitter">Twitter</span><span id="Analyzer">Analyzer</span></h1> -->
+                <img src="logo.png" class="bigLogo">
                 <p id="Caption">Analyze your tweet !!</p>
             </div>
-            <hr class="style14">
+            <hr class="style13">
             <div class="content">
                 <form>
-                    Keyword: <input type="text" name="firstname" class="inputBox">
-                    <br>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Keyword</label>
+                    </div>
                     Algoritma
                     <br>
-                    <input type="radio" name="selectedAlgo" value="boyerMoore" checked> Boyer-Moore<br>
-                    <input type="radio" name="selectedAlgo" value="kmp"> KMP<br>
-                    <input type="radio" name="selectedAlgo" value="Regex"> Regex
+                    <p>
+                        <label>
+                            <input class="with-gap" name="selectedAlgo" value="boyerMoore" type="radio" checked />
+                            <span>Bayer-Moore</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" name="selectedAlgo" value="kmp" type="radio"/>
+                            <span>KMP</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" name="selectedAlgo" value="Regex" type="radio"/>
+                            <span>Regex</span>
+                        </label>
+                    </p>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>
-                <hr class="style14">
+                <hr class="style13">
                 <h2>Result</h2>
+                <div class="postContainer">
+                    <div class="name">
+                        <a id="screenName" href="#">luthfihadiana</a> <span id="username">@luthfihadiana</span>
+                    </div>
+                    <div class="tweetText">
+                        <p>RT @MarcBartra: Viel Glück @BVB für heute im Revierderby! Auf gehts meine Freunde! #HejaBVB 🐝 https://t.co/JDAZTE37eF from : BVB</p>
+                    </div>
+                </div>
+                <div class="postContainer">
+                    <div class="name">
+                        <a id="screenName" href="#">luthfihadiana</a> <span id="username">@luthfihadiana</span>
+                    </div>
+                    <div class="tweetText">
+                        <p>RT @MarcBartra: Viel Glück @BVB für heute im Revierderby! Auf gehts meine Freunde! #HejaBVB 🐝 https://t.co/JDAZTE37eF from : BVB</p>
+                    </div>
+                </div>              
             </div>
         </div>
     </body>
+    <script src="materialize.min.js"></script>    
 </html>

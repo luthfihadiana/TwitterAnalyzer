@@ -9,11 +9,10 @@ $access_token_secret = "mzQYK3JhTQ2mbvLGgJh72PbjTcBkhDbSV3prmCnkDpGyf";
 $connection = new TwitterOAuth($consumerKey, $consumerSecret, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
 
-if(isset($_POST["keyWord"]){
-    $statuses = $connection->get("statuses/user_timeline", ["screen_name"=> $_POST["keyWord"] ,"count" => 4, "exclude_replies" => true]);
-}
+$statuses = $connection->get("statuses/home_timeline", ["count" => 20, "exclude_replies" => true]);
 
 $index = 0;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +28,15 @@ $index = 0;
     <body>
         <ul class="nav">
             <!-- <li><a href="default.asp">Home</a></li> -->
-            <a href="news.asp"><img href="#" src="logo.png" class="littleLogo"></a>            
+            <!-- <a href="news.asp"><img href="#" src="logo.png" class="littleLogo"></a>           -->
+            <div class="dropdown">
+                <a href="news.asp" class="dropbtn"><img href="#" src="logo.png" class="littleLogo"></a>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
             <li><a href="news.asp">Apps</a></li>
             <li><a href="contact.asp">How to Use</a></li>
             <li><a href="about.asp">About</a></li>
@@ -74,13 +81,8 @@ $index = 0;
                 <hr class="style13">
                 <h2>Result</h2>
                 <?php
-                if(isset($_POST["keyWord"]){
-                    foreach ($statuses as $iter)
-                        echo '<div class="postContainer"><div class="name"><a id="screenName" href="#">',$iter->user->name,' </a><span id="username">@',$iter->user->screen_name,'</span></div><div class="tweetText"><p>',$iter->text,'</p></div></div>';
-                    $input = $statuses[0]->text;
-                    echo $input;
-                    echo "<p>",shell_exec("python coba.py \"$input\" "),"</p>";
-                }
+                foreach ($statuses as $iter)
+                    echo '<div class="postContainer"><div class="name"><a id="screenName" href="#">',$iter->user->name,' </a><span id="username">@',$iter->user->screen_name,'</span></div><div class="tweetText"><p>',$iter->text,'</p></div></div>';
                 ?>
             </div>
         </div>

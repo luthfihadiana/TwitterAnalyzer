@@ -8,10 +8,9 @@ $access_token = "407673525-R7cNepBNpQYFB1fNRW41H3bCSKf4ICXF6wqKKRnL";
 $access_token_secret = "mzQYK3JhTQ2mbvLGgJh72PbjTcBkhDbSV3prmCnkDpGyf";
 $connection = new TwitterOAuth($consumerKey, $consumerSecret, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
-if(isset($_POST["userName"])){
-    $statuses = $connection->get("statuses/user_timeline", ["screen_name"=>$_POST["userName"],"count" => 25, "exclude_replies" => true]);
-    $username = $statuses[0]->user->name;
-}
+
+$statuses = $connection->get("statuses/user_timeline", ["screen_name"=>"shafiraaputria","count" => 25, "exclude_replies" => true]);
+$username = $statuses[0]->user->name;
 $index = 0;
 ?>
 <!DOCTYPE html>
@@ -26,21 +25,20 @@ $index = 0;
     <!-- <script src="main.js"></script> -->
 </head>
     <body>
-    <ul class="nav">
+        <ul class="nav">
             <!-- <li><a href="default.asp">Home</a></li> -->
-            <a href="index.php"><img href="#" src="logo.png" class="littleLogo"></a>            
-            <li><a href="homeDetector.php">Home Detector</a></li>
-            <li><a href="spammerDetector.php">Spammer Detector</a></li>            
-            <li><a href="homeDetector.php">How to Use</a></li>
-            <li><a href="about.php">About</a></li>
+            <a href="news.asp"><img href="#" src="logo.png" class="littleLogo"></a>            
+            <li><a href="news.asp">Apps</a></li>
+            <li><a href="contact.asp">How to Use</a></li>
+            <li><a href="about.asp">About</a></li>
         </ul>
         <div class="row">
             <div class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
-                <form action="spammerDetector.php" method="post">
+                <form action="index.php" method="post">
                     <div class="row">
                         <h4 class="title">Spammer Detector</h4>
                         <div class="input-field col s6">
-                            <input id="last_name" type="text" name="userName" class="validate">
+                            <input id="last_name" type="text" class="validate">
                             <label for="last_name">username</label>
                         </div>
                         <div class="col s12">
@@ -48,7 +46,7 @@ $index = 0;
                             <br>
                             <p>
                                 <label>
-                                    <input class="with-gap" name="selectedAlgo" value="boyerMoore" type="radio"/>
+                                    <input class="with-gap" name="selectedAlgo" value="boyerMoore" type="radio" checked />
                                     <span>Bayer-Moore</span>
                                 </label>
                                 <label>
@@ -62,34 +60,15 @@ $index = 0;
                             </p>
                         </div>
                         <div class="col s12">
-                            <button class="btn waves-effect waves-light cyan accent-4" type="submit" name="action" id="btnRight">Check</button>
+                            <button class="btn waves-effect waves-light" type="submit" name="action" id="btnRight">Check</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col s12 m8 l9">
-                <h2 class="title"><?php  
-                if(isset($_POST["userName"]))
-                echo $username
-                ?></h2>
-                <h3 style="margin-top :  5px; text-align :  center; color : #008CBA">is<br><span style="color : red;">Spammer</span></h3> 
-                <p style="color : #008CBA;">Detect : <span style= "color : red;" >10</span> from 25</p>
-                <?php 
-                if(isset($_POST["userName"])){
-                    foreach ($statuses as $iter)
-                        echo '<div class="postContainer">
-                                <img src=',$iter->user->profile_image_url,' alt="" class="circle">
-                                <div>
-                                    <div class="name">
-                                        <a id="screenName" href="#">',$iter->user->name,' </a>
-                                        <span id="username">@',$iter->user->screen_name,'</span>
-                                    </div>
-                                    <div class="tweetText">
-                                        <p>',$iter->text,'</p>
-                                    </div>
-                                </div>
-                            </div>';
-                }
+            <div class="col s12 m8 l9"> 
+                <h2 class="title"><?php echo $username ?></h2>
+                <?php foreach ($statuses as $iter)
+                    echo '<div class="postContainer"><div class="name"><a id="screenName" href="#">',$iter->user->name,' </a><span id="username">@',$iter->user->screen_name,'</span></div><div class="tweetText"><p>',$iter->text,'</p></div></div>';
                 ?>
             </div>
         </div>
